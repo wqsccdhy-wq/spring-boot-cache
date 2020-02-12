@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface EmployeeMapper {
 
+    @Options(useGeneratedKeys = true,keyProperty = "id")
     @Insert("INSERT INTO employee(lastName,email,gender,d_id) VALUES(#{lastName},#{email},#{gender},#{dId})")
     public int insertEmployee(Employee employee);
 
