@@ -7,7 +7,6 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @MapperScan("com.wq.cache.mapper")
 @SpringBootApplication
-/*开启缓存注解*/
 @EnableCaching
 public class SpringBootCacheApplication {
 

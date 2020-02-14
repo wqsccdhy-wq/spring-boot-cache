@@ -45,10 +45,6 @@ public class EmployeeService {
      */
     @CachePut(value = "{emp}", key = "#employee.id")
     public Employee updateEmployee(Employee employee) {
-        String ss = null;
-        if (ss.equals("11")){
-
-        }
         employeeMapper.updateEmployee(employee);
         return employee;
     }
