@@ -1,9 +1,6 @@
 package com.wq.cache.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import com.wq.cache.bean.Department;
 
@@ -15,6 +12,7 @@ import com.wq.cache.bean.Department;
  */
 public interface DepartmentMapper {
 
+    @Options(useGeneratedKeys = true,keyProperty = "id")
     @Insert("INSERT INTO department(departmentName) VALUES(#{departmentName})")
     public int insertDepartment(Department department);
 

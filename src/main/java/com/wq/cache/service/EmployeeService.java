@@ -23,6 +23,7 @@ public class EmployeeService {
     @CachePut(value = "{emp}", key = "#result.id")
     public Employee insertEmployee(Employee employee) {
         int num = employeeMapper.insertEmployee(employee);
+        System.out.println("保存Emp:" + employee.getdId());
         return employee;
     }
 

@@ -27,7 +27,7 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
-    @GetMapping("/emp")
+    @GetMapping("/emp/update")
     public Employee updateEmployee(Employee employee) {
         employeeService.updateEmployee(employee);
         return employee;
@@ -40,7 +40,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/emp/del/{id}")
-    public String saveEmployee(@PathVariable("id") Integer id) {
+    public String delEmployee(@PathVariable("id") Integer id) {
         int i = employeeService.delEmployeeById(id);
         System.out.println(i);
         String result = "Fail";

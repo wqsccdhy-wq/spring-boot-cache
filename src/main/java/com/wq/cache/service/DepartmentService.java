@@ -3,6 +3,9 @@ package com.wq.cache.service;
 import com.wq.cache.bean.Department;
 import com.wq.cache.mapper.DepartmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,19 +20,29 @@ public class DepartmentService {
     @Autowired
     private DepartmentMapper departmentMapper;
 
-    public int insertDepartment(Department department) {
-        return departmentMapper.insertDepartment(department);
+    @CachePut(cacheNames = "{dept}",key = "#result.id")
+    public Department insertDepartment(Department department) {
+        departmentMapper.insertDepartment(department);
+        return department;
     }
 
+    @CacheEvict(cacheNames = "{dept}",key = "#id")
     public int delDepartmentById(Integer id) {
         return departmentMapper.delDepartmentById(id);
     }
 
-    public int updateDepartment(Department department) {
-        return departmentMapper.updateDepartment(department);
+    @CachePut(cacheNames = "{dept}",key = "#department.id",condition = "#result != null ")
+    public Department updateDepartment(Department department) {
+        int num = departmentMapper.updateDepartment(department);
+        if (num > 0){
+            return department;
+        }
+        return null;
     }
 
-    public Department getEmployeeById(Integer id) {
+    @Cacheable(cacheNames = "{dept}",key = "#id")
+    public Department getDeptById(Integer id) {
+        System.out.println("查询部门:" + id);
         return departmentMapper.getEmployeeById(id);
     }
 

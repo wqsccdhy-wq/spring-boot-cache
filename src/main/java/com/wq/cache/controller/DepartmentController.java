@@ -21,8 +21,25 @@ public class DepartmentController {
 
     @GetMapping("/dept/{id}")
     public Department getDepById(@PathVariable("id") Integer id){
-        Department employee = departmentService.getEmployeeById(id);
-        System.out.println(employee.getDepartmentName());
-        return employee;
+        Department dept = departmentService.getDeptById(id);
+        return dept;
+    }
+
+    @GetMapping("/dept/save")
+    public Department saveDept(Department dept){
+        Department department = departmentService.insertDepartment(dept);
+        return department;
+    }
+
+    @GetMapping("/dept/del/{id}")
+    public String delDept(@PathVariable("id") Integer id){
+        departmentService.delDepartmentById(id);
+        return "OK";
+    }
+
+    @GetMapping("/dept/update")
+    public Department updateDept(Department dept){
+        Department department = departmentService.updateDepartment(dept);
+        return department;
     }
 }
