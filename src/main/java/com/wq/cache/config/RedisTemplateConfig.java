@@ -25,6 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @Date: 2020-02-14 18:04
  * @since 2020-2-14 18:04
  * https://www.cnblogs.com/jatpeo/p/11767478.html
+ *springboot2.x +redis使用和源码分析一(springboot自动装配源码分析)
+ * https://blog.csdn.net/F_Hello_World/article/details/103695114
  */
 @Configuration
 public class RedisTemplateConfig {
