@@ -1,5 +1,6 @@
 package com.wq.cache;
 
+import com.wq.cache.bean.Book;
 import com.wq.cache.bean.Department;
 import com.wq.cache.bean.Employee;
 import com.wq.cache.config.RedisTemplateConfig;
@@ -8,6 +9,9 @@ import com.wq.cache.mapper.EmployeeMapper;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -35,6 +39,12 @@ class SpringBootCacheApplicationTests {
      */
     @Autowired
     StringRedisTemplate stringRedisTemplate;
+
+    /**
+     * RabbitTemq操作对象
+     */
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     @Test
     void contextLoads() {
@@ -90,6 +100,24 @@ class SpringBootCacheApplicationTests {
 
         logger.info("dept:" + dept);
 
+    }
+
+    /**
+     * RabbitMq单播
+     */
+    @Test
+    public void tesSendtDirect(){
+       // rabbitTemplate.convertAndSend("exchange.direct","atguigu","单播测试");
+        Book book = new Book(3331l,"Java开发3331" ,"Tom猫3331");
+        //rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
+        rabbitTemplate.convertAndSend("exchange.direct","atguigu.news",book);
+    }
+
+    @Test
+    public void testRecDirect(){
+        //Message message = rabbitTemplate.receive("atguigu");
+        Book book = (Book) rabbitTemplate.receiveAndConvert("atguigu.news");
+        System.out.println(book);
     }
 
 }
