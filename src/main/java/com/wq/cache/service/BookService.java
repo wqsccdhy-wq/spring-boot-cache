@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author wangqing
- * @Desc
+ * @Desc 监听RabbitMQ，接收消息
  * @Date: 2020-02-24 15:30
  * @since 2020-2-24 15:30
  */
