@@ -1,0 +1,17 @@
+elasticSearch:
+  # 集群地址，多个用,隔开
+  hosts: 10.5.6.177
+  port: 9200
+  # 使用的协议
+  schema: http
+  client:
+    # 连接超时时间
+    connectTimeOut: 1000
+    # 连接超时时间
+    socketTimeOut: 3000
+    # 获取连接的超时时间
+    connectionRequestTimeOut: 500
+    # 最大连接数
+    maxConnectNum: 50
+    # 最大路由连接数
+    maxConnectPerRoute: 50
