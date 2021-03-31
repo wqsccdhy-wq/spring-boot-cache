@@ -24,7 +24,7 @@
         <druid.version>1.1.20</druid.version>
         <jquery.version>3.4.1</jquery.version>
         <bootstrap.version>4.4.1</bootstrap.version>
-        <guava.version>28.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <ignite.version>1.9.0</ignite.version>
         <elasticsearch.version>7.7.0</elasticsearch.version>
     </properties>
